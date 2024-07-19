@@ -8,8 +8,12 @@ const cookieParser = require('cookie-parser');
 //intiallize express
 const app = express();
 
+
 //requiring routers
-const errorMiddleware = require('./middleware/CatchAsyncError')
+const errorMiddleware = require('./middleware/CatchAsyncError');
+
+//requiring routers
+const ProductRouter = require('./routes/productRouter');
 
 app.use(express.json({ limit: '20mb'}));
 
@@ -21,6 +25,8 @@ app.get('/', (req, res) => {
     });
 });
 
+//using routers
+app.use('/api/products', ProductRouter);
 
 //using other middlewares
 app.use(cookieParser);
